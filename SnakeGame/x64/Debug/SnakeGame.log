@@ -1,0 +1,9 @@
+﻿  Textbox.cpp
+C:\Game Development\C++\SnakeGame\SnakeGame\Textbox.cpp(34,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Textbox.cpp(34,37): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Textbox.cpp(34,37): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Textbox.cpp(34,37): warning C4244:             T=float
+C:\Game Development\C++\SnakeGame\SnakeGame\Textbox.cpp(34,37): warning C4244:         ]
+Game.obj : error LNK2019: unresolved external symbol "public: int __cdecl World::GetBlockSize(void)" (?GetBlockSize@World@@QEAAHXZ) referenced in function "public: __cdecl Game::Game(void)" (??0Game@@QEAA@XZ)
+Main.obj : error LNK2019: unresolved external symbol "public: class Window * __cdecl Game::GetWindow(void)" (?GetWindow@Game@@QEAAPEAVWindow@@XZ) referenced in function main
+C:\Game Development\C++\SnakeGame\x64\Debug\SnakeGame.exe : fatal error LNK1120: 2 unresolved externals
