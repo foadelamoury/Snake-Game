@@ -3,52 +3,36 @@
   "WorkspaceRootPath": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Textbox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Textbox.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Window.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Window.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Textbox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Textbox.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\World.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\World.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\State.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\State.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\SnakeDependencies.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\SnakeDependencies.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\AssetManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\AssetManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Snake.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Snake.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\StateManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\StateManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\World.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\World.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\StateManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\StateManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Snake.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\Snake.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\AssetManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{503BEA44-D008-4F89-963A-BDF4D3498E6D}|SnakeGame\\SnakeGame.vcxproj|solutionrelative:SnakeGame\\AssetManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,8 +42,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 25,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.h",
+              "RelativeDocumentMoniker": "SnakeGame\\Game.h",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.h",
+              "RelativeToolTip": "SnakeGame\\Game.h",
+              "ViewState": "AgIAABUAAAAAAAAAAAAUwCgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-03T18:57:34.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.cpp",
+              "RelativeDocumentMoniker": "SnakeGame\\Game.cpp",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.cpp",
+              "RelativeToolTip": "SnakeGame\\Game.cpp",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-03T18:56:33.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Main.cpp",
+              "RelativeDocumentMoniker": "SnakeGame\\Main.cpp",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Main.cpp",
+              "RelativeToolTip": "SnakeGame\\Main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-03T18:52:45.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "State.cpp",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\State.cpp",
+              "RelativeDocumentMoniker": "SnakeGame\\State.cpp",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\State.cpp",
+              "RelativeToolTip": "SnakeGame\\State.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-03T18:52:45.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StateManager.h",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\StateManager.h",
+              "RelativeDocumentMoniker": "SnakeGame\\StateManager.h",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\StateManager.h",
+              "RelativeToolTip": "SnakeGame\\StateManager.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-03T18:49:24.124Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -118,158 +167,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Textbox.cpp",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Textbox.cpp",
-              "RelativeDocumentMoniker": "SnakeGame\\Textbox.cpp",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Textbox.cpp",
-              "RelativeToolTip": "SnakeGame\\Textbox.cpp",
-              "ViewState": "AgIAACsAAAAAAAAAAAAgwDYAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T21:19:38.804Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Textbox.h",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Textbox.h",
-              "RelativeDocumentMoniker": "SnakeGame\\Textbox.h",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Textbox.h",
-              "RelativeToolTip": "SnakeGame\\Textbox.h",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T21:18:58.349Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Window.cpp",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Window.cpp",
-              "RelativeDocumentMoniker": "SnakeGame\\Window.cpp",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Window.cpp",
-              "RelativeToolTip": "SnakeGame\\Window.cpp",
-              "ViewState": "AgIAABoAAAAAAAAAAAApwCUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T21:04:48.412Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Window.h",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Window.h",
-              "RelativeDocumentMoniker": "SnakeGame\\Window.h",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Window.h",
-              "RelativeToolTip": "SnakeGame\\Window.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T21:04:10.907Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Game.cpp",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.cpp",
-              "RelativeDocumentMoniker": "SnakeGame\\Game.cpp",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.cpp",
-              "RelativeToolTip": "SnakeGame\\Game.cpp",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADEAAAATAAAAAAAAAA==",
+              "Title": "AssetManager.cpp",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\AssetManager.cpp",
+              "RelativeDocumentMoniker": "SnakeGame\\AssetManager.cpp",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\AssetManager.cpp",
+              "RelativeToolTip": "SnakeGame\\AssetManager.cpp",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBgAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T20:57:02.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Game.h",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.h",
-              "RelativeDocumentMoniker": "SnakeGame\\Game.h",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Game.h",
-              "RelativeToolTip": "SnakeGame\\Game.h",
-              "ViewState": "AgIAAAkAAAAAAAAAAAApwBUAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T20:55:56.778Z",
+              "WhenOpened": "2024-11-03T18:43:58.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "World.cpp",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\World.cpp",
-              "RelativeDocumentMoniker": "SnakeGame\\World.cpp",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\World.cpp",
-              "RelativeToolTip": "SnakeGame\\World.cpp",
-              "ViewState": "AgIAAC4AAAAAAAAAAAApwD8AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T20:52:18.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "World.h",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\World.h",
-              "RelativeDocumentMoniker": "SnakeGame\\World.h",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\World.h",
-              "RelativeToolTip": "SnakeGame\\World.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
+              "Title": "AssetManager.h",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\AssetManager.h",
+              "RelativeDocumentMoniker": "SnakeGame\\AssetManager.h",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\AssetManager.h",
+              "RelativeToolTip": "SnakeGame\\AssetManager.h",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAmwBgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T20:51:26.676Z",
+              "WhenOpened": "2024-11-03T18:40:13.437Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Snake.cpp",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Snake.cpp",
-              "RelativeDocumentMoniker": "SnakeGame\\Snake.cpp",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Snake.cpp",
-              "RelativeToolTip": "SnakeGame\\Snake.cpp",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAAAIYAAAALAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "StateManager.cpp",
+              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\StateManager.cpp",
+              "RelativeDocumentMoniker": "SnakeGame\\StateManager.cpp",
+              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\StateManager.cpp",
+              "RelativeToolTip": "SnakeGame\\StateManager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T20:42:33.53Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SnakeDependencies.h",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\SnakeDependencies.h",
-              "RelativeDocumentMoniker": "SnakeGame\\SnakeDependencies.h",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\SnakeDependencies.h",
-              "RelativeToolTip": "SnakeGame\\SnakeDependencies.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T20:40:12.021Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Snake.h",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Snake.h",
-              "RelativeDocumentMoniker": "SnakeGame\\Snake.h",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Snake.h",
-              "RelativeToolTip": "SnakeGame\\Snake.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T20:35:55.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Main.cpp",
-              "DocumentMoniker": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Main.cpp",
-              "RelativeDocumentMoniker": "SnakeGame\\Main.cpp",
-              "ToolTip": "C:\\Game Development\\C\u002B\u002B\\SnakeGame\\SnakeGame\\Main.cpp",
-              "RelativeToolTip": "SnakeGame\\Main.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T19:23:07.662Z",
+              "WhenOpened": "2024-11-03T18:24:28.812Z",
               "EditorCaption": ""
             }
           ]

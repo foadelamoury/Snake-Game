@@ -1,17 +1,11 @@
-#include "Snake.h"
-#include "SFML/Graphics.hpp"
 #include "Game.h"
 
 
-void main(int argc, void** argv[]) 
+int main() 
 {
-	// Program entry point.
-	Game game; // Creating our game object.
-	while (!game.GetWindow()->IsDone()) 
-	{
-		// Game loop.
-		game.HandleInput();
-		game.Update();
-		game.Render();
-	}
+	Game game;
+	
+	game.Run();
+
+	return 0;
 }
