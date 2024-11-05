@@ -19,12 +19,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Gameover.h" />
+    <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="PauseGame.h" />
+    <ClInclude Include="Snake.h" />
     <ClInclude Include="State.h" />
-    <ClInclude Include="StateMan.h" />
+    <ClInclude Include="StateManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gameover.cpp" />
+    <ClCompile Include="Gameplay.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="PauseGame.cpp" />
+    <ClCompile Include="Snake.cpp" />
     <ClCompile Include="State.cpp" />
-    <ClCompile Include="StateMan.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Main.cpp~RF1ccd5f0.TMP" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

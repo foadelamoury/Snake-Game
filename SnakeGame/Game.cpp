@@ -3,11 +3,13 @@
 #include "SFML/Window.hpp"
 #include <string>
 #include <ctime> // Updated for modern C++ header style
+#include "MainMenu.h"
 
 Game::Game() : m_context(std:: make_shared<Context>())
 {
 
-	m_context->m_window->create(sf::VideoMode(800, 600), "Professor Snake",sf::Style::Close);
+	m_context->m_window->create(sf::VideoMode(1808, 608), "Professor Snake",sf::Style::Close);
+	m_context->m_stateManager->Add(std::make_unique<MainMenu>(m_context));
 }
 Game::~Game() 
 {
@@ -21,19 +23,28 @@ void Game::Run()
 	sf::Clock clock;
 	sf::Time timeSinceLastFrame = sf::Time::Zero;
 
-	while (m_context->m_window->isOpen()) {
+	while (m_context->m_window->isOpen())
+	{
 
-		sf::Event event;
-		while (m_context->m_window->pollEvent(event))
+
+		timeSinceLastFrame += clock.restart();
+		while (timeSinceLastFrame > TIME_PER_FRAME)
 		{
 
-			if (event.type == sf::Event::Closed)
-				m_context->m_window->close();
-		}
+			timeSinceLastFrame -= TIME_PER_FRAME;
 
-		m_context->m_window->clear();
-		m_context->m_window->draw(shape);
-		m_context->m_window->display();
+			m_context->m_stateManager->ProcessStateChange();
+			m_context->m_stateManager->GetCurrent()->ProcessInput();
+			m_context->m_stateManager->GetCurrent()->Update(TIME_PER_FRAME);
+			m_context->m_stateManager->GetCurrent()->Draw();
+
+
+
+
+
+
+		}
 	}
+
 
 }

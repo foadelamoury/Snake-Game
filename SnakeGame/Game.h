@@ -1,5 +1,4 @@
 #pragma once
-
 #include <memory>
 
 #include "SFML/Graphics/RenderWindow.hpp"
@@ -7,6 +6,15 @@
 #include "StateManager.h"
 #include "AssetManager.h"
 
+
+enum AssetID
+{
+	MAIN_FONT = 0,
+	GRASS,
+	FOOD,
+	WALL,
+	SNAKE
+};
 
 struct Context
 {
@@ -30,7 +38,7 @@ private:
 	/// </summary>
 	
 	std::shared_ptr<Context> m_context; 
-	const sf::Time TIME_PER_SECOND = sf::seconds(1.f / 60.f);  // 60 fps
+	const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);  // 60 fps
 
 
 public:
