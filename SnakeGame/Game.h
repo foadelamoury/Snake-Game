@@ -15,7 +15,8 @@ enum AssetID
 	WALL,
 	SNAKE,
 	SNAKE_DAMAGED,
-	SNAKE_CONFUSED
+	SNAKE_CONFUSED,
+	STONE
 };
 
 struct Context

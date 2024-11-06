@@ -15,9 +15,10 @@ void Snake::Init(const sf::Texture& texture)
     for (auto& piece : m_body)
     {
         piece.setTexture(texture);
-        piece.setPosition({ x, speed });
+        piece.setPosition({ 64.f, 64.f });
         x += speed;
     }
+    
 }
 
 void Snake::Move(const sf::Vector2f& direction)

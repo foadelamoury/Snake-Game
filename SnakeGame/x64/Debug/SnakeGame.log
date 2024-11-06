@@ -1,35 +1,47 @@
 ﻿  Gameplay.cpp
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(40,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(70,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(70,61): warning C4244:         with
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(70,61): warning C4244:         [
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(70,61): warning C4244:             T=unsigned int
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(70,61): warning C4244:         ]
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,58): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,58): warning C4244:         with
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,58): warning C4244:         [
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,58): warning C4244:             T=unsigned int
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,58): warning C4244:         ]
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,93): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,93): warning C4244:         with
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,93): warning C4244:         [
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,93): warning C4244:             T=unsigned int
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,93): warning C4244:         ]
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,54): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,54): warning C4244:         with
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,54): warning C4244:         [
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,54): warning C4244:             T=unsigned int
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(81,54): warning C4244:         ]
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,98): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,98): warning C4244:         with
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,98): warning C4244:         [
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,98): warning C4244:             T=unsigned int
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,98): warning C4244:         ]
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,59): warning C4244:         with
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,59): warning C4244:         [
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,59): warning C4244:             T=unsigned int
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(99,59): warning C4244:         ]
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(184,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(184,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(44,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,61): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,61): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,61): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(74,61): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(78,58): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(78,58): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(78,58): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(78,58): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(78,58): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,93): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,93): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,93): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,93): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,93): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,54): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,54): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,54): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,54): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(88,54): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,98): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,98): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,98): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,98): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,98): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,59): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,59): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,59): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,59): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(107,59): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(193,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(193,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(286,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(287,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(290,18): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(290,18): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(290,18): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(290,18): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(290,18): warning C4244:         ]
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(291,19): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(291,19): warning C4244:         with
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(291,19): warning C4244:         [
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(291,19): warning C4244:             T=unsigned int
+C:\Game Development\C++\SnakeGame\SnakeGame\Gameplay.cpp(291,19): warning C4244:         ]
   SnakeGame.vcxproj -> C:\Game Development\C++\SnakeGame\x64\Debug\SnakeGame.exe

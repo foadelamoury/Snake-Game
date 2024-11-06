@@ -40,6 +40,10 @@ class Snake : public sf::Drawable
 		{
 			return speed;
 		}
+		sf::Sprite GetSnakeHead() const
+		{
+			return m_body.end() != m_head ? *m_head : sf::Sprite();
+		}
 
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

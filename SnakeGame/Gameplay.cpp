@@ -12,6 +12,10 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <fstream>
+#include <vector>
+#include <iostream>
+
 
 
 using namespace std::this_thread; 
@@ -53,6 +57,9 @@ void Gameplay::Init()
 	m_context->m_assetManager->AddTexture(SNAKE, "C:/Game Development/C++/SnakeGame/Assets/Textures/snake.png");
 	m_context->m_assetManager->AddTexture(SNAKE_DAMAGED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeDamaged.png");
 	m_context->m_assetManager->AddTexture(SNAKE_CONFUSED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeConfused.png");
+	m_context->m_assetManager->AddTexture(STONE, "C:/Game Development/C++/SnakeGame/Assets/Textures/stone.png");
+
+
 
 #pragma endregion
 
@@ -72,6 +79,9 @@ void Gameplay::Init()
 	m_walls[2].setTextureRect({ 0, 0, 16, (int)m_context->m_window->getSize().y });
 	m_walls[3].setTextureRect({ 0, 0, 16, (int)m_context->m_window->getSize().y });
 	m_walls[3].setPosition(m_context->m_window->getSize().x - 16, 0);
+
+
+
 #pragma endregion
 
 #pragma region Food Texture and Position
@@ -83,9 +93,17 @@ void Gameplay::Init()
 #pragma endregion
 
 
+#pragma region Stone Texture and Position
+
+	m_food.setTexture(m_context->m_assetManager->GetTexture(FOOD));
+	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	m_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+	//m_food.setColor(sf::Color::Black);
+#pragma endregion
 #pragma region Snake Texture and Position
 
 	m_snake.Init(m_context->m_assetManager->GetTexture(SNAKE));
+	
 	
 #pragma endregion
 
@@ -96,7 +114,7 @@ void Gameplay::Init()
 	m_scoreText.setFillColor(sf::Color::White);
 	m_scoreText.setCharacterSize(50);
 	m_scoreText.setOrigin(m_scoreText.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
-	m_scoreText.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+	m_scoreText.setPosition(m_context->m_window->getSize().x / 18, m_context->m_window->getSize().y / 60);
 #pragma endregion
 
 
@@ -105,6 +123,7 @@ void Gameplay::Init()
 
 		wall.setTexture(m_context->m_assetManager->GetTexture(WALL));
 	}
+	LoadWallsFromGridFile("C:/Game Development/C++/SnakeGame/Assets/Maps/walls.txt");
 
 
 }
@@ -155,10 +174,10 @@ void Gameplay::Update(const sf::Time& deltaTime)
 		m_elapsedTime += deltaTime;
 		if (m_elapsedTime.asSeconds() > 0.1)
 		{
-			for (int i= 0 ; i<m_walls.size() ; i++)
+			for (int i= 0 ; i<m_v_walls.size() ; i++) // it changed from m_walls
 			{
 				
-				if (m_snake.IsOn(m_walls[i]))
+				if (m_snake.IsOn(m_v_walls[i]))
 				{
 					#pragma region Snake hits wall and changes color
 					snakeColorClock.restart();
@@ -203,7 +222,7 @@ void Gameplay::Update(const sf::Time& deltaTime)
 				m_scoreText.setFillColor(sf::Color::White);
 				scoreColorChanged = false;
 			}
-			if (snakeColorChanged && snakeColorClock.getElapsedTime().asSeconds() > 0.5)
+			if (snakeColorChanged && snakeColorClock.getElapsedTime().asSeconds() > 0.13)
 			{
 				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE));
 				snakeColorChanged = false;
@@ -219,7 +238,15 @@ void Gameplay::Draw()
 {
 	m_context->m_window->clear();
 	//m_context->m_window->draw(m_grass);
-	for (auto& wall : m_walls)
+
+
+	/*for (auto& wall : m_walls)
+	{
+		m_context->m_window->draw(wall);
+
+	}*/
+
+	for (auto& wall : m_v_walls)
 	{
 		m_context->m_window->draw(wall);
 
@@ -249,16 +276,60 @@ void Gameplay::Start()
 	m_isPaused = false;
 }
 
+void Gameplay::LoadWallsFromGridFile(const std::string& filename)
+{
+	std::ifstream inputFile(filename);
+	if (!inputFile.is_open()) {
+		std::cerr << "Error: Could not open " << filename << std::endl;
+		return;
+	}
+
+	std::vector<std::string> grid;
+	std::string line;
+
+	while (std::getline(inputFile, line)) {
+		grid.push_back(line);
+	}
+	inputFile.close();
+
+	// Calculate cell size based on the window and grid dimensions
+	int rows = grid.size();
+	int cols = rows > 0 ? grid[0].size() : 0; // Assuming consistent column size
+	if (cols == 0) return;
+
+	float cellWidth = m_context->m_window->getSize().x / cols;
+	float cellHeight = m_context->m_window->getSize().y / rows;
+
+	for (int row = 0; row < rows; ++row) {
+		for (int col = 0; col < grid[row].size(); ++col) {
+			if (grid[row][col] == '*') {
+				sf::Sprite wall;
+				wall.setTexture(m_context->m_assetManager->GetTexture(WALL));
+				wall.setPosition(col * cellWidth, row * cellHeight);
+				wall.setTextureRect({ 0, 0, static_cast<int>(cellWidth), static_cast<int>(cellHeight) });
+				m_v_walls.push_back(wall);
+			}
+		}
+	}
+}
+
 
 
 #pragma region Snake Change Direction
 
 void Gameplay::ChangeSnakeDirection(sf::Vector2f& direction, int i)
 {
-	if (i == 1 || i == 3)
-		direction = { -(m_snake.GetSpeed()), -(m_snake.GetSpeed()) };
-	else
-		direction = { (m_snake.GetSpeed()), (m_snake.GetSpeed()) };
+	sf::FloatRect wallBounds = m_v_walls[i].getGlobalBounds();
+	sf::FloatRect snakeBounds = m_snake.GetSnakeHead().getGlobalBounds();
+
+	if (snakeBounds.top < wallBounds.top + wallBounds.height && snakeBounds.top + snakeBounds.height > wallBounds.top)
+	{
+		direction.x = -direction.x;
+	}
+	if (snakeBounds.left < wallBounds.left + wallBounds.width && snakeBounds.left + snakeBounds.width > wallBounds.left)
+	{
+		direction.y = -direction.y;
+	}
 	m_snake.Move(direction);
 }
 #pragma endregion

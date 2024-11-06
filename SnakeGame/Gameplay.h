@@ -18,6 +18,8 @@ private:
 	sf::Sprite m_grass;
 	sf::Sprite m_food;
 	std::array<sf::Sprite, 4> m_walls;
+
+	std::vector<sf::Sprite> m_v_walls;
 	
 
 	Snake m_snake;
@@ -47,8 +49,10 @@ public:
 	void Start() override;
 
 
-#pragma region Snake and Score Color Change
+#pragma region Walls from file
 
+
+	void LoadWallsFromGridFile(const std::string& filename);
 
 #pragma endregion
 
