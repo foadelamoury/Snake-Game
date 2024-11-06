@@ -13,7 +13,9 @@ enum AssetID
 	GRASS,
 	FOOD,
 	WALL,
-	SNAKE
+	SNAKE,
+	SNAKE_DAMAGED,
+	SNAKE_CONFUSED
 };
 
 struct Context

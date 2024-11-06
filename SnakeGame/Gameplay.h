@@ -3,6 +3,8 @@
 #include <array>
 
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
+
 
 #include "Game.h"
 #include "State.h"
@@ -16,11 +18,21 @@ private:
 	sf::Sprite m_grass;
 	sf::Sprite m_food;
 	std::array<sf::Sprite, 4> m_walls;
+	
 
 	Snake m_snake;
+	bool snakeColorChanged = false;
+	sf::Clock snakeColorClock;
+
+	sf::Text m_scoreText;
+	int m_score;
+	sf::Clock scoreColorClock;
+	bool scoreColorChanged = false;
+
 	sf::Vector2f m_snakeDirection;
 
 	sf::Time m_elapsedTime;
+	bool m_isPaused;
 
 
 	
@@ -29,10 +41,26 @@ public:
 	~Gameplay();
 	void Init() override;
 	void ProcessInput() override;
-	void Update(sf::Time deltaTime) override;
+	void Update(const sf::Time& deltaTime) override;
 	void Draw() override;
 	void Pause() override;
 	void Start() override;
+
+
+#pragma region Snake and Score Color Change
+
+
+#pragma endregion
+
+
+
+#pragma region Snake Change Direction
+
+	void ChangeSnakeDirection(sf::Vector2f & direction, int i);
+
+#pragma endregion
+
+
 	
 
 };

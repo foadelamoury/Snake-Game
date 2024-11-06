@@ -115,7 +115,7 @@ void MainMenu::ProcessInput()
 	}
 }
 
-void MainMenu::Update(sf::Time deltaTime)
+void MainMenu::Update(const sf::Time& deltaTime)
 {
 	if (m_playButtonState == Selected) 
 	{

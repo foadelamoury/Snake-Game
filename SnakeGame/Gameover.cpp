@@ -119,7 +119,7 @@ void Gameover::ProcessInput()
 	}
 }
 
-void Gameover::Update(sf::Time deltaTime)
+void Gameover::Update(const sf::Time& deltaTime)
 {
 
 	if (m_retryButtonState == Selected)

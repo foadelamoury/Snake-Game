@@ -1,15 +1,21 @@
 #include "Gameplay.h"
 
 #include "Gameover.h"
+#include "PauseGame.h"
+#include "Snake.h"
+
 
 #include <SFML/Window/Event.hpp>
 
 #include <stdlib.h>
 #include <time.h>
 #include <algorithm>
+#include <chrono>
+#include <thread>
 
 
-
+using namespace std::this_thread; 
+using namespace std::chrono;
 #pragma region Clamp Definition
 
 /// <summary>
@@ -25,7 +31,11 @@ T clamp(T value, T min, T max) {
 #pragma endregion
 
 Gameplay::Gameplay(std::shared_ptr<Context>& context)
-	: m_context(context) , m_snakeDirection({16.f,0.f}), m_elapsedTime(sf::Time::Zero)
+	: m_context(context) ,
+	m_snakeDirection({ (m_snake.GetSpeed()),0.f}),
+	m_elapsedTime(sf::Time::Zero),
+	m_score(0),
+	m_isPaused(false)
 {
 	srand(time(nullptr));
 }
@@ -41,6 +51,9 @@ void Gameplay::Init()
 	m_context->m_assetManager->AddTexture(FOOD, "C:/Game Development/C++/SnakeGame/Assets/Textures/food.png");
 	m_context->m_assetManager->AddTexture(WALL, "C:/Game Development/C++/SnakeGame/Assets/Textures/wall.png", true);
 	m_context->m_assetManager->AddTexture(SNAKE, "C:/Game Development/C++/SnakeGame/Assets/Textures/snake.png");
+	m_context->m_assetManager->AddTexture(SNAKE_DAMAGED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeDamaged.png");
+	m_context->m_assetManager->AddTexture(SNAKE_CONFUSED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeConfused.png");
+
 #pragma endregion
 
 #pragma region Grass Texture and Position
@@ -64,7 +77,8 @@ void Gameplay::Init()
 #pragma region Food Texture and Position
 
 	m_food.setTexture(m_context->m_assetManager->GetTexture(FOOD));
-	m_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 2);
+	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	m_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
 	//m_food.setColor(sf::Color::Black);
 #pragma endregion
 
@@ -72,8 +86,18 @@ void Gameplay::Init()
 #pragma region Snake Texture and Position
 
 	m_snake.Init(m_context->m_assetManager->GetTexture(SNAKE));
+	
 #pragma endregion
 
+#pragma region Score Text
+
+	m_scoreText.setFont(m_context->m_assetManager->GetFont(MAIN_FONT));
+	m_scoreText.setString("Score: " + std::to_string(m_score));
+	m_scoreText.setFillColor(sf::Color::White);
+	m_scoreText.setCharacterSize(50);
+	m_scoreText.setOrigin(m_scoreText.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	m_scoreText.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+#pragma endregion
 
 
 	for (auto& wall : m_walls)
@@ -100,19 +124,19 @@ void Gameplay::ProcessInput()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::Up:
-					newDirection = { 0.f, -16.f };
+					newDirection = { 0.f, -(m_snake.GetSpeed()) };
 					break;
 				case sf::Keyboard::Down:
-					newDirection = { 0.f, 16.f };
+					newDirection = { 0.f, (m_snake.GetSpeed()) };
 					break;
 				case sf::Keyboard::Left:
-					newDirection = { -16.f, 0.f };
+					newDirection = { -(m_snake.GetSpeed()), 0.f };
 					break;
 				case sf::Keyboard::Right:
-					newDirection = { 16.f, 0.f };
+					newDirection = { (m_snake.GetSpeed()), 0.f };
 					break;
 				case sf::Keyboard::Escape:
-					//pause
+				m_context->m_stateManager->Add(std::make_unique<PauseGame>(m_context));
 					break;
 				}
 				if(std::abs(m_snakeDirection.x) != std::abs(newDirection.x) || std::abs(m_snakeDirection.y) != std::abs(newDirection.y))
@@ -124,54 +148,77 @@ void Gameplay::ProcessInput()
 
 }
 
-void Gameplay::Update(sf::Time deltaTime)
+void Gameplay::Update(const sf::Time& deltaTime)
 {
-	
-	m_elapsedTime += deltaTime;
-	if (m_elapsedTime.asSeconds() > 0.1)
+	if (!m_isPaused)
 	{
-		bool isOnWall = false;
-		for (auto& wall : m_walls)
+		m_elapsedTime += deltaTime;
+		if (m_elapsedTime.asSeconds() > 0.1)
 		{
-			if(m_snake.IsOn(wall))
+			for (int i= 0 ; i<m_walls.size() ; i++)
 			{
-
-				m_context->m_stateManager->Add(std::make_unique<Gameover>(m_context),true);
-				isOnWall = true;
-				break;
-			}
-		}
-		if (m_snake.IsOn(m_food)) 
-		{
-			m_snake.Grow(m_snakeDirection);
-
-			int x=0, y=0;
-
-			
-
-			x= clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
-
-			y= clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
-
-
-			m_food.setPosition(x, y);
-		}
-		else
-		{
-		m_snake.Move(m_snakeDirection);
 				
+				if (m_snake.IsOn(m_walls[i]))
+				{
+					#pragma region Snake hits wall and changes color
+					snakeColorClock.restart();
+					ChangeSnakeDirection(m_snakeDirection, i);
+					
+
+					m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_DAMAGED));
+
+					snakeColorChanged = true;
+					#pragma endregion
+
+					//m_context->m_stateManager->Add(std::make_unique<Gameover>(m_context), true);
+					break;
+				}
+			}
+
+			if (m_snake.IsOn(m_food))
+			{
+				m_snake.Grow(m_snakeDirection);
+
+				int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
+				int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
+				m_food.setPosition(x, y);
+
+				m_score++;
+				m_scoreText.setString("Score: " + std::to_string(m_score));
+				#pragma region Score changing color
+
+				m_scoreText.setFillColor(sf::Color::Green);
+				scoreColorChanged = true;
+				scoreColorClock.restart();
+				#pragma endregion
+
+			}
+			else
+			{
+				m_snake.Move(m_snakeDirection);
+			}
+
+			if (scoreColorChanged && scoreColorClock.getElapsedTime().asSeconds() > 0.15)
+			{
+				m_scoreText.setFillColor(sf::Color::White);
+				scoreColorChanged = false;
+			}
+			if (snakeColorChanged && snakeColorClock.getElapsedTime().asSeconds() > 0.5)
+			{
+				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE));
+				snakeColorChanged = false;
+			}
+
+			m_elapsedTime = sf::Time::Zero;
 		}
-		m_elapsedTime = sf::Time::Zero;
 	}
-
-
-
 }
+
 
 void Gameplay::Draw()
 {
 	m_context->m_window->clear();
-	m_context->m_window->draw(m_grass);
+	//m_context->m_window->draw(m_grass);
 	for (auto& wall : m_walls)
 	{
 		m_context->m_window->draw(wall);
@@ -180,6 +227,10 @@ void Gameplay::Draw()
 	m_context->m_window->draw(m_food);
 	
 	m_context->m_window->draw(m_snake);
+	
+	
+	m_context->m_window->draw(m_scoreText);
+
 
 
 	m_context->m_window->display();
@@ -190,8 +241,24 @@ void Gameplay::Draw()
 
 void Gameplay::Pause()
 {
+	m_isPaused = true;
 }
 
 void Gameplay::Start()
 {
+	m_isPaused = false;
 }
+
+
+
+#pragma region Snake Change Direction
+
+void Gameplay::ChangeSnakeDirection(sf::Vector2f& direction, int i)
+{
+	if (i == 1 || i == 3)
+		direction = { -(m_snake.GetSpeed()), -(m_snake.GetSpeed()) };
+	else
+		direction = { (m_snake.GetSpeed()), (m_snake.GetSpeed()) };
+	m_snake.Move(direction);
+}
+#pragma endregion
