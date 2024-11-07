@@ -36,7 +36,7 @@ T clamp(T value, T min, T max) {
 
 Gameplay::Gameplay(std::shared_ptr<Context>& context)
 	: m_context(context) ,
-	m_snakeDirection({ (m_snake.GetSpeed()),0.f}),
+	m_snakeDirection({ (m_snake.GetDirection()),0.f}),
 	m_elapsedTime(sf::Time::Zero),
 	m_score(0),
 	m_isPaused(false)
@@ -136,30 +136,35 @@ void Gameplay::Init()
 
 
 
-#pragma region Snake Texture and Position
+#pragma region Snake Texture and Position and Health
 
 	m_snake.Init(m_context->m_assetManager->GetTexture(SNAKE));
 	
-	m_snake.SetHealth(0);
+	m_snake.SetHealth(100);
+
 #pragma endregion
+
+
 
 #pragma region Enemy Goblin
 	m_goblin.setTexture(m_context->m_assetManager->GetTexture(ENEMY_GOBLIN));
 	m_goblin.setOrigin(m_goblin.getLocalBounds().width / 2, m_goblin.getLocalBounds().height / 2);
 	m_goblin.setPosition(m_context->m_window->getSize().x - 500, m_context->m_window->getSize().y - 400);
-	isWallHitGoblin = false;
 
 	m_goblinDirection = { 0.f, -16.f };
 
 #pragma endregion
+
 #pragma region Enemy Dog
 	m_dog.setTexture(m_context->m_assetManager->GetTexture(ENEMY_DOG));
 	m_dog.setOrigin(m_dog.getLocalBounds().width / 2, m_dog.getLocalBounds().height / 2);
 	m_dog.setPosition(m_context->m_window->getSize().x - 700, m_context->m_window->getSize().y - 230);
-	isWallHitDog = false;
 	m_dogDirection = { -16.f, 0.f };
+	
 
 #pragma endregion
+
+
 
 #pragma region Health Text
 	m_healthText.setFont(m_context->m_assetManager->GetFont(MAIN_FONT));
@@ -187,7 +192,7 @@ void Gameplay::Init()
 
 		wall.setTexture(m_context->m_assetManager->GetTexture(WALL));
 	}
-	LoadWallsFromGridFile("C:/Game Development/C++/SnakeGame/Assets/Maps/walls.txt");
+	LoadWallsFromTextFile("C:/Game Development/C++/SnakeGame/Assets/Maps/walls.txt");
 
 
 }
@@ -208,35 +213,36 @@ void Gameplay::ProcessInput()
 				{
 				case sf::Keyboard::Up:
 					if(snakePoisonedColorChanged) // this is where the snake gets poisoned
-						newDirection = { 0.f, (m_snake.GetSpeed()) };
+						newDirection = { 0.f, (m_snake.GetDirection())  };
 					else
-					newDirection = { 0.f, -(m_snake.GetSpeed()) };
+					newDirection = { 0.f, -(m_snake.GetDirection()) };
 					break;
 				case sf::Keyboard::Down:
 					if (snakePoisonedColorChanged)  // this is where the snake gets poisoned
-					newDirection = { 0.f, -(m_snake.GetSpeed()) };
+					newDirection = { 0.f, -(m_snake.GetDirection()) };
 					else
-					newDirection = { 0.f, (m_snake.GetSpeed()) };
+					newDirection = { 0.f, (m_snake.GetDirection()) };
 					break;
 				case sf::Keyboard::Left:
 					if (snakePoisonedColorChanged)  // this is where the snake gets poisoned
-					newDirection = { (m_snake.GetSpeed()), 0.f };
+					newDirection = { (m_snake.GetDirection()), 0.f };
 
 					else
-					newDirection = { -(m_snake.GetSpeed()), 0.f };
+					newDirection = { -(m_snake.GetDirection()), 0.f };
 					break;
 				case sf::Keyboard::Right:
 					if (snakePoisonedColorChanged)  // this is where the snake gets poisoned
-						newDirection = { -(m_snake.GetSpeed()), 0.f };
+						newDirection = { -(m_snake.GetDirection()), 0.f };
 					else
-					newDirection = { (m_snake.GetSpeed()), 0.f };
+					newDirection = { (m_snake.GetDirection()), 0.f };
 					break;
 				case sf::Keyboard::Escape:
 				m_context->m_stateManager->Add(std::make_unique<PauseGame>(m_context));
 					break;
 				}
 				if(std::abs(m_snakeDirection.x) != std::abs(newDirection.x) || std::abs(m_snakeDirection.y) != std::abs(newDirection.y))
-					m_snakeDirection = newDirection;
+					m_snakeDirection = newDirection /* m_snake.GetSpeed()*/
+					;
 			}
 	#pragma endregion
 
@@ -253,11 +259,33 @@ void Gameplay::Update(const sf::Time& deltaTime)
 		if (m_elapsedTime.asSeconds() > 0.1)
 		{
 			MoveEnemy(m_goblinDirection, m_goblin);
-			MoveEnemy(m_dogDirection, m_dog);
 
+			#pragma region dog chasing snake
+
+			sf::Vector2f dogPosition = m_dog.getPosition();
+			sf::Vector2f snakeHeadPosition = m_snake.GetSnakeHead().getPosition();
+			sf::Vector2f direction = snakeHeadPosition - dogPosition;
+
+			float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+			if (magnitude != 0) {
+				direction = direction / magnitude;
+			}
+
+			float dogSpeed = 600.f * deltaTime.asSeconds();
+			sf::Vector2f newDogPosition = dogPosition + direction * dogSpeed;
+
+			m_dog.setPosition(newDogPosition);
+			if (IsCollidingWithWall(m_dog))
+			{
+				m_dog.setPosition(dogPosition);
+				MoveEnemy(m_dogDirection, m_dog);
+				m_dogDirection = ChangeEnemyDirection(m_dog, m_dogDirection);
+
+
+			}
+#pragma endregion
 			
 			m_goblinDirection = ChangeEnemyDirection(m_goblin, m_goblinDirection);
-			m_dogDirection = ChangeEnemyDirection(m_dog, m_dogDirection);
 
 			for (int i= 0 ; i<m_v_walls.size() ; i++) // it changed from m_walls
 			{
@@ -471,7 +499,7 @@ void Gameplay::Start()
 	m_isPaused = false;
 }
 
-void Gameplay::LoadWallsFromGridFile(const std::string& filename)
+void Gameplay::LoadWallsFromTextFile(const std::string& filename)
 {
 	std::ifstream inputFile(filename);
 	if (!inputFile.is_open()) {
@@ -479,31 +507,31 @@ void Gameplay::LoadWallsFromGridFile(const std::string& filename)
 		return;
 	}
 
-	std::vector<std::string> grid;
+	std::vector<std::string> map;
 	std::string line;
 
 	while (std::getline(inputFile, line)) {
-		grid.push_back(line);
+		map.push_back(line);
 	}
 	inputFile.close();
 
-	int rows = grid.size();
-	int cols = rows > 0 ? grid[0].size() : 0; 
+	int rows = map.size();
+	int cols = rows > 0 ? map[0].size() : 0; 
 	if (cols == 0) return;
 
 	float cellWidth = m_context->m_window->getSize().x / cols;
 	float cellHeight = m_context->m_window->getSize().y / rows;
 
 	for (int row = 0; row < rows; ++row) {
-		for (int col = 0; col < grid[row].size(); ++col) {
-			if (grid[row][col] == '*') {
+		for (int col = 0; col < map[row].size(); ++col) {
+			if (map[row][col] == '*') {
 				sf::Sprite wall;
 				wall.setTexture(m_context->m_assetManager->GetTexture(WALL));
 				wall.setPosition(col * cellWidth, row * cellHeight);
 				wall.setTextureRect({ 0, 0, static_cast<int>(cellWidth), static_cast<int>(cellHeight) });
 				m_v_walls.push_back(wall);
 			}
-			else if (grid[row][col] == '&') {
+			else if (map[row][col] == '&') {
 				sf::Sprite stone;
 				stone.setTexture(m_context->m_assetManager->GetTexture(STONE));
 				stone.setPosition(col * cellWidth, row * cellHeight);
@@ -582,14 +610,19 @@ void Gameplay::ChangeAppleSpawn(sf::Sprite & food)
 
 #pragma region Enemy Movement
 
+
 void Gameplay::MoveEnemy(sf::Vector2f& direction , sf::Sprite & enemy)
 {
 	enemy.setPosition(enemy.getPosition() + direction);
 	
 }
+#pragma endregion
 
-sf::Vector2f Gameplay::ChangeEnemyDirection( sf::Sprite& enemy, sf::Vector2f  enemyDirection)
+#pragma region Change Enemy Direction
+
+sf::Vector2f Gameplay::ChangeEnemyDirection(sf::Sprite& enemy, sf::Vector2f  enemyDirection)
 {
+
 	sf::FloatRect enemyBounds = enemy.getGlobalBounds();
 	sf::Vector2f newDirection = enemyDirection;
 
@@ -599,25 +632,31 @@ sf::Vector2f Gameplay::ChangeEnemyDirection( sf::Sprite& enemy, sf::Vector2f  en
 
 		if (enemyBounds.intersects(wallBounds))
 		{
-			if (enemyDirection.x != 0) newDirection.x = -newDirection.x;
+			if (enemyDirection.x != 0) {
+				newDirection.x = -newDirection.x;
+
+			}
 			if (enemyDirection.y != 0) newDirection.y = -newDirection.y;
 			break;
 		}
 	}
 	return newDirection;
-	
+
+}
+#pragma endregion
+
+
+bool Gameplay::IsCollidingWithWall(sf::Sprite& enemy) {
+	for (const auto& wall : m_v_walls) {
+		if (enemy.getGlobalBounds().intersects(wall.getGlobalBounds())) {
+			return true;
+		}
+	}
+	return false;
 }
 
 
 
-#pragma endregion
+//• A “structured programming” version(50m)
 
 
-/*
-				
-					• The snake dodges moving obstacles(at least 2 different types of unique obstacles)
-					(7m per obstacle).
-
-					I want to make an enemy moves toward the snake
-					
-*/

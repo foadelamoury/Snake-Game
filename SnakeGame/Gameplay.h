@@ -32,8 +32,7 @@ private:
 	sf::Vector2f m_goblinDirection;
 	sf::Vector2f m_dogDirection;
 
-	bool isWallHitDog;
-	bool isWallHitGoblin;
+	
 
 
 
@@ -77,7 +76,7 @@ public:
 #pragma region Walls from file
 
 
-	void LoadWallsFromGridFile(const std::string& filename);
+	void LoadWallsFromTextFile(const std::string& filename);
 
 #pragma endregion
 
@@ -103,6 +102,8 @@ public:
 	void MoveEnemy(sf::Vector2f& direction, sf::Sprite& enemy);
 
 	sf::Vector2f ChangeEnemyDirection(sf::Sprite& enemy, sf::Vector2f  enemyDirection);
+
+	bool IsCollidingWithWall(sf::Sprite& sprite);
 
 #pragma endregion
 

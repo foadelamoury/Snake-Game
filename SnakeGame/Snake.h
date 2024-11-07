@@ -16,7 +16,10 @@ class Snake : public sf::Drawable
 	std::list<sf::Sprite>::iterator m_head;
 	std::list<sf::Sprite>::iterator m_tail;
 
+	float direction;
+
 	float speed;
+
 
 	int health;
   public: 
@@ -39,19 +42,31 @@ class Snake : public sf::Drawable
 		bool IsSelfIntersecting() const;
 
 
+
+
 		int GetHealth() const
 		{
 			return health;
 
 		}
-		float GetSpeed() const
+		float GetDirection() const
 		{
-			return speed;
+			return direction;
 		}
 		
 		sf::Sprite GetSnakeHead() const
 		{
 			return m_body.end() != m_head ? *m_head : sf::Sprite();
+		}
+
+		float GetSpeed() const
+		{
+			return speed;
+		}
+
+		void SetSpeed(float speed)
+		{
+			this->speed = speed;
 		}
 
 		void SetHealth(int health)

@@ -1,5 +1,8 @@
 #include "Snake.h"
-Snake::Snake() : m_body(std::list<sf::Sprite>(4)) , speed(16.f) , health(0)
+Snake::Snake() : m_body(std::list<sf::Sprite>(4)) ,
+direction(16.f) , 
+health(0),
+speed(0)
 {
     m_head = --m_body.end();
     m_tail = m_body.begin();
@@ -11,12 +14,12 @@ Snake::~Snake()
 
 void Snake::Init(const sf::Texture& texture)
 {
-    float x = speed;
+    float x = direction;
     for (auto& piece : m_body)
     {
         piece.setTexture(texture);
-        piece.setPosition({ 64.f, 64.f });
-        x += speed;
+        piece.setPosition({ 16.f, 16.f });
+        x += direction;
     }
     
 }
