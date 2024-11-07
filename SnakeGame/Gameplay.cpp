@@ -52,16 +52,37 @@ void Gameplay::Init()
 {
 #pragma region Adding Texture files to the program
 	m_context->m_assetManager->AddTexture(GRASS, "C:/Game Development/C++/SnakeGame/Assets/Textures/grass.png", true);
-	m_context->m_assetManager->AddTexture(FOOD, "C:/Game Development/C++/SnakeGame/Assets/Textures/food.png");
-	m_context->m_assetManager->AddTexture(WALL, "C:/Game Development/C++/SnakeGame/Assets/Textures/wall.png",true);
+
+#pragma region Map Textures
+
+	m_context->m_assetManager->AddTexture(WALL, "C:/Game Development/C++/SnakeGame/Assets/Textures/wall.png", true);
+	m_context->m_assetManager->AddTexture(STONE, "C:/Game Development/C++/SnakeGame/Assets/Textures/stone.png", true);
+#pragma endregion
+
+	
+#pragma region Snake different Status effects
 	m_context->m_assetManager->AddTexture(SNAKE, "C:/Game Development/C++/SnakeGame/Assets/Textures/snake.png");
 	m_context->m_assetManager->AddTexture(SNAKE_DAMAGED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeDamaged.png");
 	m_context->m_assetManager->AddTexture(SNAKE_CONFUSED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeConfused.png");
-	m_context->m_assetManager->AddTexture(STONE, "C:/Game Development/C++/SnakeGame/Assets/Textures/stone.png", true);
+#pragma endregion
+
+
+
+	m_context->m_assetManager->AddTexture(FOOD, "C:/Game Development/C++/SnakeGame/Assets/Textures/food.png");
+#pragma region Apples with Effects
 	m_context->m_assetManager->AddTexture(GOLDEN_APPLE, "C:/Game Development/C++/SnakeGame/Assets/Textures/goldenApple.png");
 	m_context->m_assetManager->AddTexture(POISONED_APPLE, "C:/Game Development/C++/SnakeGame/Assets/Textures/poisonedApple.png");
+#pragma endregion
 
 
+
+#pragma region Moving Enemies
+	m_context->m_assetManager->AddTexture(ENEMY_GOBLIN, "C:/Game Development/C++/SnakeGame/Assets/Textures/enemy1.png");
+	m_context->m_assetManager->AddTexture(ENEMY_DOG, "C:/Game Development/C++/SnakeGame/Assets/Textures/enemy2.png");
+
+
+#pragma endregion
+	
 
 
 #pragma endregion
@@ -90,16 +111,16 @@ void Gameplay::Init()
 #pragma region Food Texture and Position
 
 	m_food.setTexture(m_context->m_assetManager->GetTexture(FOOD));
-	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
-	//m_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
-	m_golden_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
+	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_food.getLocalBounds().height / 2);
+	//m_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
+	m_food.setPosition(m_context->m_window->getSize().x / 12, m_context->m_window->getSize().y / 12);
 
 #pragma endregion
 
 #pragma region Golden Food Texture and Position
 
 	m_golden_food.setTexture(m_context->m_assetManager->GetTexture(GOLDEN_APPLE));
-	m_golden_food.setOrigin(m_golden_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	m_golden_food.setOrigin(m_golden_food.getLocalBounds().width / 2, m_golden_food.getLocalBounds().height / 2);
 	//m_golden_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
 	m_golden_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
 
@@ -108,7 +129,7 @@ void Gameplay::Init()
 #pragma region Poisoned Food Texture and Position
 	
 	m_poisoned_food.setTexture(m_context->m_assetManager->GetTexture(POISONED_APPLE));
-	m_poisoned_food.setOrigin(m_poisoned_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	m_poisoned_food.setOrigin(m_poisoned_food.getLocalBounds().width / 2, m_poisoned_food.getLocalBounds().height / 2);
 	m_poisoned_food.setPosition(m_context->m_window->getSize().x / 4, m_context->m_window->getSize().y / 2);
 	//m_food.setColor(sf::Color::Black);
 #pragma endregion
@@ -119,7 +140,35 @@ void Gameplay::Init()
 
 	m_snake.Init(m_context->m_assetManager->GetTexture(SNAKE));
 	
-	
+	m_snake.SetHealth(0);
+#pragma endregion
+
+#pragma region Enemy Goblin
+	m_goblin.setTexture(m_context->m_assetManager->GetTexture(ENEMY_GOBLIN));
+	m_goblin.setOrigin(m_goblin.getLocalBounds().width / 2, m_goblin.getLocalBounds().height / 2);
+	m_goblin.setPosition(m_context->m_window->getSize().x - 500, m_context->m_window->getSize().y - 400);
+	isWallHitGoblin = false;
+
+	m_goblinDirection = { 0.f, -16.f };
+
+#pragma endregion
+#pragma region Enemy Dog
+	m_dog.setTexture(m_context->m_assetManager->GetTexture(ENEMY_DOG));
+	m_dog.setOrigin(m_dog.getLocalBounds().width / 2, m_dog.getLocalBounds().height / 2);
+	m_dog.setPosition(m_context->m_window->getSize().x - 700, m_context->m_window->getSize().y - 230);
+	isWallHitDog = false;
+	m_dogDirection = { -16.f, 0.f };
+
+#pragma endregion
+
+#pragma region Health Text
+	m_healthText.setFont(m_context->m_assetManager->GetFont(MAIN_FONT));
+	m_healthText.setString("Health: " + std::to_string(m_snake.GetHealth()+1));
+	m_healthText.setFillColor(sf::Color::White);
+	m_healthText.setCharacterSize(50);
+	m_healthText.setOrigin(m_healthText.getLocalBounds().width / 2, m_healthText.getLocalBounds().height / 2);
+	m_healthText.setPosition(m_context->m_window->getSize().x -160, m_context->m_window->getSize().y - 600);
+
 #pragma endregion
 
 #pragma region Score Text
@@ -131,7 +180,7 @@ void Gameplay::Init()
 	m_scoreText.setOrigin(m_scoreText.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
 	m_scoreText.setPosition(m_context->m_window->getSize().x / 18, m_context->m_window->getSize().y / 60);
 #pragma endregion
-
+	
 
 	for (auto& wall : m_walls)
 	{
@@ -199,9 +248,17 @@ void Gameplay::Update(const sf::Time& deltaTime)
 {
 	if (!m_isPaused)
 	{
+
 		m_elapsedTime += deltaTime;
 		if (m_elapsedTime.asSeconds() > 0.1)
 		{
+			MoveEnemy(m_goblinDirection, m_goblin);
+			MoveEnemy(m_dogDirection, m_dog);
+
+			
+			m_goblinDirection = ChangeEnemyDirection(m_goblin, m_goblinDirection);
+			m_dogDirection = ChangeEnemyDirection(m_dog, m_dogDirection);
+
 			for (int i= 0 ; i<m_v_walls.size() ; i++) // it changed from m_walls
 			{
 				
@@ -209,27 +266,67 @@ void Gameplay::Update(const sf::Time& deltaTime)
 				{
 					#pragma region Snake hits wall and changes color
 					snakeColorClock.restart();
+					
 					ChangeSnakeDirection(m_snakeDirection, i);
 					
-
-					
+	
 					m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_DAMAGED));
 
 					snakeColorChanged = true;
 					#pragma endregion
+					m_snake.SetHealth(m_snake.GetHealth() - 1);
+					m_healthText.setString("Health: " + std::to_string(m_snake.GetHealth() + 1));
 
-					//m_context->m_stateManager->Add(std::make_unique<Gameover>(m_context), true);
+					if(m_snake.GetHealth() < 0)
+					m_context->m_stateManager->Add(std::make_unique<Gameover>(m_context), true);
 					break;
 				}
 			}
+			if (m_snake.IsOn(m_goblin))
+			{
+				#pragma region Snake hits goblin and changes color
+				snakeColorClock.restart();
 
+				ChangeSnakeDirection(m_snakeDirection, m_goblin);
+
+
+				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_DAMAGED));
+
+				snakeColorChanged = true;
+				#pragma endregion
+				m_snake.SetHealth(m_snake.GetHealth() - 1);
+				m_healthText.setString("Health: " + std::to_string(m_snake.GetHealth() + 1));
+
+				if (m_snake.GetHealth() < 0)
+					m_context->m_stateManager->Add(std::make_unique<Gameover>(m_context), true);
+			}
+
+			if (m_snake.IsOn(m_dog))
+			{
+				#pragma region Snake hits goblin and changes color
+				snakeColorClock.restart();
+
+				ChangeSnakeDirection(m_snakeDirection, m_dog);
+
+
+				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_DAMAGED));
+
+				snakeColorChanged = true;
+				#pragma endregion
+				m_snake.SetHealth(m_snake.GetHealth() - 1);
+				m_healthText.setString("Health: " + std::to_string(m_snake.GetHealth() + 1));
+
+				if (m_snake.GetHealth() < 0)
+					m_context->m_stateManager->Add(std::make_unique<Gameover>(m_context), true);
+			}
 			if (m_snake.IsOn(m_food))
 			{
 				m_snake.Grow(m_snakeDirection);
-
+				m_snake.SetHealth(m_snake.GetHealth() + 1);
+				m_healthText.setString("Health: " + std::to_string(m_snake.GetHealth() + 1));
 				for (int i = 0; i < m_v_walls.size(); i++) // it changed from m_walls
 				{
-					ChangeAppleSpawn(i, m_food);
+					ChangeAppleSpawn(m_food);
 				}
 
 				m_score++;
@@ -242,6 +339,10 @@ void Gameplay::Update(const sf::Time& deltaTime)
 				#pragma endregion
 
 			}
+
+			
+
+			
 			if (m_snake.IsOn(m_golden_food))
 			{
 				for (int i = 0; i < 5; i++)
@@ -250,7 +351,7 @@ void Gameplay::Update(const sf::Time& deltaTime)
 
 				for (int i = 0; i < m_v_walls.size(); i++) // it changed from m_walls
 				{
-					ChangeAppleSpawn(i, m_golden_food);
+					ChangeAppleSpawn(m_golden_food);
 				}
 
 				m_score+=5;
@@ -270,7 +371,7 @@ void Gameplay::Update(const sf::Time& deltaTime)
 
 				for (int i = 0; i < m_v_walls.size(); i++) // it changed from m_walls
 				{
-					ChangeAppleSpawn(i, m_poisoned_food);
+					ChangeAppleSpawn(m_poisoned_food);
 				}
 				#pragma region Snake hits wall and changes color
 				snakePoisonedColorClock.restart();
@@ -302,7 +403,10 @@ void Gameplay::Update(const sf::Time& deltaTime)
 			}
 			if (snakeColorChanged && snakeColorClock.getElapsedTime().asSeconds() > 0.13)
 			{
-				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE));
+				if(snakePoisonedColorChanged)
+					m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_CONFUSED));
+				else
+					m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE));
 				snakeColorChanged = false;
 			}
 			if (snakePoisonedColorChanged && snakePoisonedColorClock.getElapsedTime().asSeconds() > 3.8)
@@ -334,9 +438,7 @@ void Gameplay::Draw()
 
 	}
 	m_context->m_window->draw(m_food);
-	
 	m_context->m_window->draw(m_poisoned_food);
-	
 	m_context->m_window->draw(m_golden_food);
 
 	
@@ -344,6 +446,12 @@ void Gameplay::Draw()
 	
 	
 	m_context->m_window->draw(m_scoreText);
+	m_context->m_window->draw(m_healthText);
+
+	m_context->m_window->draw(m_goblin);
+	m_context->m_window->draw(m_dog);
+
+
 
 
 
@@ -427,37 +535,89 @@ void Gameplay::ChangeSnakeDirection(sf::Vector2f& direction, int i)
 	m_snake.Move(direction);
 }
 
+void Gameplay::ChangeSnakeDirection(sf::Vector2f& direction, sf::Sprite enemy)
+{
+	sf::FloatRect enemyBounds = enemy.getGlobalBounds();
+	sf::FloatRect snakeBounds = m_snake.GetSnakeHead().getGlobalBounds();
+
+
+	if (snakeBounds.top < enemyBounds.top + enemyBounds.height && snakeBounds.top + snakeBounds.height > enemyBounds.top)
+	{
+		direction.x = -direction.x;
+	}
+	if (snakeBounds.left < enemyBounds.left + enemyBounds.width && snakeBounds.left + snakeBounds.width > enemyBounds.left)
+	{
+		direction.y = -direction.y;
+	}
+	m_snake.Move(direction);
+}
+//void Gameplay::ChangeEnemyDirection(sf::Vector2f& direction, int i)
+
 #pragma endregion
 
 #pragma region Change Apple Spawn
 
-void Gameplay::ChangeAppleSpawn(int i, sf::Sprite & food)
+void Gameplay::ChangeAppleSpawn(sf::Sprite & food)
 {
-	sf::FloatRect wallBounds = m_v_walls[i].getGlobalBounds();
-	sf::FloatRect foodBounds = food.getGlobalBounds();
-
-	if ((foodBounds.top) < (wallBounds.top) +15 + (wallBounds.height) && (foodBounds.top) +15 + (foodBounds.height) > wallBounds.top)
-	{
+	bool isColliding;
+	do {
 		int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
 		int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
 		food.setPosition(x, y);
-		ChangeAppleSpawn(i, food);
-	}
-	else if (foodBounds.left < wallBounds.left + (wallBounds.width) +15 && foodBounds.left + (foodBounds.width) +15 > wallBounds.left)
-	{
-		int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
-		int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
-		food.setPosition(x, y);
-		ChangeAppleSpawn(i, food);
-	}
 
-	else if(foodBounds.intersects(wallBounds))
-	{
-		int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
-		int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
-		food.setPosition(x, y);
-		ChangeAppleSpawn(i, food);
-	}
+		isColliding = false;
+		for (const auto& wall : m_v_walls) 
+		{
+			if (food.getGlobalBounds().intersects(wall.getGlobalBounds())) {
+				isColliding = true;
+				break;
+			}
+		}
 
+	} while (isColliding);  
 }
+
+
 #pragma endregion
+
+#pragma region Enemy Movement
+
+void Gameplay::MoveEnemy(sf::Vector2f& direction , sf::Sprite & enemy)
+{
+	enemy.setPosition(enemy.getPosition() + direction);
+	
+}
+
+sf::Vector2f Gameplay::ChangeEnemyDirection( sf::Sprite& enemy, sf::Vector2f  enemyDirection)
+{
+	sf::FloatRect enemyBounds = enemy.getGlobalBounds();
+	sf::Vector2f newDirection = enemyDirection;
+
+	for (const auto& wall : m_v_walls)
+	{
+		sf::FloatRect wallBounds = wall.getGlobalBounds();
+
+		if (enemyBounds.intersects(wallBounds))
+		{
+			if (enemyDirection.x != 0) newDirection.x = -newDirection.x;
+			if (enemyDirection.y != 0) newDirection.y = -newDirection.y;
+			break;
+		}
+	}
+	return newDirection;
+	
+}
+
+
+
+#pragma endregion
+
+
+/*
+				
+					• The snake dodges moving obstacles(at least 2 different types of unique obstacles)
+					(7m per obstacle).
+
+					I want to make an enemy moves toward the snake
+					
+*/

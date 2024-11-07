@@ -13,7 +13,6 @@ MainMenu::~MainMenu()
 }
 
 void MainMenu::Init()
-
 {
 
 #pragma region Game Title

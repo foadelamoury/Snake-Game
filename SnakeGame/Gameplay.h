@@ -24,6 +24,19 @@ private:
 	std::array<sf::Sprite, 4> m_walls;
 
 	std::vector<sf::Sprite> m_v_walls;
+
+
+	sf::Sprite m_goblin;
+	sf::Sprite m_dog;
+
+	sf::Vector2f m_goblinDirection;
+	sf::Vector2f m_dogDirection;
+
+	bool isWallHitDog;
+	bool isWallHitGoblin;
+
+
+
 	
 
 	Snake m_snake;
@@ -33,12 +46,17 @@ private:
 	bool snakePoisonedColorChanged = false;
 	sf::Clock snakePoisonedColorClock;
 
+	sf::Text m_healthText;
+
+
 	sf::Text m_scoreText;
 	int m_score;
 	sf::Clock scoreColorClock;
 	bool scoreColorChanged = false;
 
 	sf::Vector2f m_snakeDirection;
+
+	
 
 	sf::Time m_elapsedTime;
 	bool m_isPaused;
@@ -69,16 +87,24 @@ public:
 
 	void ChangeSnakeDirection(sf::Vector2f & direction, int i);
 
+	void ChangeSnakeDirection(sf::Vector2f& direction, sf::Sprite enemy);
+
 #pragma endregion
 
 
 #pragma region Change Apple Spawn
 
-	void ChangeAppleSpawn(int i, sf::Sprite& food);
+	void ChangeAppleSpawn(sf::Sprite& food);
 
 #pragma endregion
 
-	
+#pragma region Enemy Movement
+
+	void MoveEnemy(sf::Vector2f& direction, sf::Sprite& enemy);
+
+	sf::Vector2f ChangeEnemyDirection(sf::Sprite& enemy, sf::Vector2f  enemyDirection);
+
+#pragma endregion
 
 };
 

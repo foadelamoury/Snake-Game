@@ -1,5 +1,5 @@
 #include "Snake.h"
-Snake::Snake() : m_body(std::list<sf::Sprite>(4)) , speed(16.f)
+Snake::Snake() : m_body(std::list<sf::Sprite>(4)) , speed(16.f) , health(0)
 {
     m_head = --m_body.end();
     m_tail = m_body.begin();
