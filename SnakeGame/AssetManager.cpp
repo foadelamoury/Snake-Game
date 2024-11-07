@@ -12,7 +12,7 @@ Engine::AssetManager::~AssetManager()
 void Engine::AssetManager::AddTexture(int id, const std::string& filePath, bool wantRepeated)
 {
     auto texture = std::make_unique<sf::Texture>();
-    if (texture->loadFromFile(filePath))  // Should check if loading succeeded
+    if (texture->loadFromFile(filePath))  
     {
         texture->setRepeated(wantRepeated);
         m_textures[id] = std::move(texture);

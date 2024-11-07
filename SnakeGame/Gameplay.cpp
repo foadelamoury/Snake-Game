@@ -53,11 +53,14 @@ void Gameplay::Init()
 #pragma region Adding Texture files to the program
 	m_context->m_assetManager->AddTexture(GRASS, "C:/Game Development/C++/SnakeGame/Assets/Textures/grass.png", true);
 	m_context->m_assetManager->AddTexture(FOOD, "C:/Game Development/C++/SnakeGame/Assets/Textures/food.png");
-	m_context->m_assetManager->AddTexture(WALL, "C:/Game Development/C++/SnakeGame/Assets/Textures/wall.png", true);
+	m_context->m_assetManager->AddTexture(WALL, "C:/Game Development/C++/SnakeGame/Assets/Textures/wall.png",true);
 	m_context->m_assetManager->AddTexture(SNAKE, "C:/Game Development/C++/SnakeGame/Assets/Textures/snake.png");
 	m_context->m_assetManager->AddTexture(SNAKE_DAMAGED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeDamaged.png");
 	m_context->m_assetManager->AddTexture(SNAKE_CONFUSED, "C:/Game Development/C++/SnakeGame/Assets/Textures/snakeConfused.png");
-	m_context->m_assetManager->AddTexture(STONE, "C:/Game Development/C++/SnakeGame/Assets/Textures/stone.png");
+	m_context->m_assetManager->AddTexture(STONE, "C:/Game Development/C++/SnakeGame/Assets/Textures/stone.png", true);
+	m_context->m_assetManager->AddTexture(GOLDEN_APPLE, "C:/Game Development/C++/SnakeGame/Assets/Textures/goldenApple.png");
+	m_context->m_assetManager->AddTexture(POISONED_APPLE, "C:/Game Development/C++/SnakeGame/Assets/Textures/poisonedApple.png");
+
 
 
 
@@ -88,18 +91,30 @@ void Gameplay::Init()
 
 	m_food.setTexture(m_context->m_assetManager->GetTexture(FOOD));
 	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
-	m_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+	//m_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+	m_golden_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
+
+#pragma endregion
+
+#pragma region Golden Food Texture and Position
+
+	m_golden_food.setTexture(m_context->m_assetManager->GetTexture(GOLDEN_APPLE));
+	m_golden_food.setOrigin(m_golden_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	//m_golden_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
+	m_golden_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+
+#pragma endregion
+
+#pragma region Poisoned Food Texture and Position
+	
+	m_poisoned_food.setTexture(m_context->m_assetManager->GetTexture(POISONED_APPLE));
+	m_poisoned_food.setOrigin(m_poisoned_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
+	m_poisoned_food.setPosition(m_context->m_window->getSize().x / 4, m_context->m_window->getSize().y / 2);
 	//m_food.setColor(sf::Color::Black);
 #pragma endregion
 
 
-#pragma region Stone Texture and Position
 
-	m_food.setTexture(m_context->m_assetManager->GetTexture(FOOD));
-	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_scoreText.getLocalBounds().height / 2);
-	m_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
-	//m_food.setColor(sf::Color::Black);
-#pragma endregion
 #pragma region Snake Texture and Position
 
 	m_snake.Init(m_context->m_assetManager->GetTexture(SNAKE));
@@ -143,15 +158,28 @@ void Gameplay::ProcessInput()
 				switch (event.key.code)
 				{
 				case sf::Keyboard::Up:
+					if(snakePoisonedColorChanged) // this is where the snake gets poisoned
+						newDirection = { 0.f, (m_snake.GetSpeed()) };
+					else
 					newDirection = { 0.f, -(m_snake.GetSpeed()) };
 					break;
 				case sf::Keyboard::Down:
+					if (snakePoisonedColorChanged)  // this is where the snake gets poisoned
+					newDirection = { 0.f, -(m_snake.GetSpeed()) };
+					else
 					newDirection = { 0.f, (m_snake.GetSpeed()) };
 					break;
 				case sf::Keyboard::Left:
+					if (snakePoisonedColorChanged)  // this is where the snake gets poisoned
+					newDirection = { (m_snake.GetSpeed()), 0.f };
+
+					else
 					newDirection = { -(m_snake.GetSpeed()), 0.f };
 					break;
 				case sf::Keyboard::Right:
+					if (snakePoisonedColorChanged)  // this is where the snake gets poisoned
+						newDirection = { -(m_snake.GetSpeed()), 0.f };
+					else
 					newDirection = { (m_snake.GetSpeed()), 0.f };
 					break;
 				case sf::Keyboard::Escape:
@@ -184,6 +212,7 @@ void Gameplay::Update(const sf::Time& deltaTime)
 					ChangeSnakeDirection(m_snakeDirection, i);
 					
 
+					
 					m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_DAMAGED));
 
 					snakeColorChanged = true;
@@ -198,9 +227,10 @@ void Gameplay::Update(const sf::Time& deltaTime)
 			{
 				m_snake.Grow(m_snakeDirection);
 
-				int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
-				int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
-				m_food.setPosition(x, y);
+				for (int i = 0; i < m_v_walls.size(); i++) // it changed from m_walls
+				{
+					ChangeAppleSpawn(i, m_food);
+				}
 
 				m_score++;
 				m_scoreText.setString("Score: " + std::to_string(m_score));
@@ -210,6 +240,54 @@ void Gameplay::Update(const sf::Time& deltaTime)
 				scoreColorChanged = true;
 				scoreColorClock.restart();
 				#pragma endregion
+
+			}
+			if (m_snake.IsOn(m_golden_food))
+			{
+				for (int i = 0; i < 5; i++)
+					m_snake.Grow(m_snakeDirection);
+
+
+				for (int i = 0; i < m_v_walls.size(); i++) // it changed from m_walls
+				{
+					ChangeAppleSpawn(i, m_golden_food);
+				}
+
+				m_score+=5;
+				m_scoreText.setString("Score: " + std::to_string(m_score));
+				#pragma region Score changing color
+
+					m_scoreText.setFillColor(sf::Color::Yellow);
+					scoreColorChanged = true;
+					scoreColorClock.restart();
+				#pragma endregion
+
+			}
+
+			if (m_snake.IsOn(m_poisoned_food))
+			{
+				
+
+				for (int i = 0; i < m_v_walls.size(); i++) // it changed from m_walls
+				{
+					ChangeAppleSpawn(i, m_poisoned_food);
+				}
+				#pragma region Snake hits wall and changes color
+				snakePoisonedColorClock.restart();
+
+
+				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE_CONFUSED));
+
+				snakePoisonedColorChanged = true;
+
+				#pragma endregion
+				#pragma region Score changing color
+
+				m_scoreText.setFillColor(sf::Color::Green);
+				scoreColorChanged = true;
+				scoreColorClock.restart();
+				#pragma endregion
+
 
 			}
 			else
@@ -227,7 +305,11 @@ void Gameplay::Update(const sf::Time& deltaTime)
 				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE));
 				snakeColorChanged = false;
 			}
-
+			if (snakePoisonedColorChanged && snakePoisonedColorClock.getElapsedTime().asSeconds() > 3.8)
+			{
+				m_snake.ChangeTexture(m_context->m_assetManager->GetTexture(SNAKE));
+				snakePoisonedColorChanged = false;
+			}
 			m_elapsedTime = sf::Time::Zero;
 		}
 	}
@@ -252,6 +334,11 @@ void Gameplay::Draw()
 
 	}
 	m_context->m_window->draw(m_food);
+	
+	m_context->m_window->draw(m_poisoned_food);
+	
+	m_context->m_window->draw(m_golden_food);
+
 	
 	m_context->m_window->draw(m_snake);
 	
@@ -292,9 +379,8 @@ void Gameplay::LoadWallsFromGridFile(const std::string& filename)
 	}
 	inputFile.close();
 
-	// Calculate cell size based on the window and grid dimensions
 	int rows = grid.size();
-	int cols = rows > 0 ? grid[0].size() : 0; // Assuming consistent column size
+	int cols = rows > 0 ? grid[0].size() : 0; 
 	if (cols == 0) return;
 
 	float cellWidth = m_context->m_window->getSize().x / cols;
@@ -309,6 +395,13 @@ void Gameplay::LoadWallsFromGridFile(const std::string& filename)
 				wall.setTextureRect({ 0, 0, static_cast<int>(cellWidth), static_cast<int>(cellHeight) });
 				m_v_walls.push_back(wall);
 			}
+			else if (grid[row][col] == '&') {
+				sf::Sprite stone;
+				stone.setTexture(m_context->m_assetManager->GetTexture(STONE));
+				stone.setPosition(col * cellWidth, row * cellHeight);
+				stone.setTextureRect({ 0, 0, static_cast<int>(cellWidth), static_cast<int>(cellHeight) });
+				m_v_walls.push_back(stone);
+			}
 		}
 	}
 }
@@ -322,6 +415,7 @@ void Gameplay::ChangeSnakeDirection(sf::Vector2f& direction, int i)
 	sf::FloatRect wallBounds = m_v_walls[i].getGlobalBounds();
 	sf::FloatRect snakeBounds = m_snake.GetSnakeHead().getGlobalBounds();
 
+
 	if (snakeBounds.top < wallBounds.top + wallBounds.height && snakeBounds.top + snakeBounds.height > wallBounds.top)
 	{
 		direction.x = -direction.x;
@@ -331,5 +425,39 @@ void Gameplay::ChangeSnakeDirection(sf::Vector2f& direction, int i)
 		direction.y = -direction.y;
 	}
 	m_snake.Move(direction);
+}
+
+#pragma endregion
+
+#pragma region Change Apple Spawn
+
+void Gameplay::ChangeAppleSpawn(int i, sf::Sprite & food)
+{
+	sf::FloatRect wallBounds = m_v_walls[i].getGlobalBounds();
+	sf::FloatRect foodBounds = food.getGlobalBounds();
+
+	if ((foodBounds.top) < (wallBounds.top) +15 + (wallBounds.height) && (foodBounds.top) +15 + (foodBounds.height) > wallBounds.top)
+	{
+		int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
+		int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
+		food.setPosition(x, y);
+		ChangeAppleSpawn(i, food);
+	}
+	else if (foodBounds.left < wallBounds.left + (wallBounds.width) +15 && foodBounds.left + (foodBounds.width) +15 > wallBounds.left)
+	{
+		int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
+		int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
+		food.setPosition(x, y);
+		ChangeAppleSpawn(i, food);
+	}
+
+	else if(foodBounds.intersects(wallBounds))
+	{
+		int x = clamp<int>(rand() % (int)m_context->m_window->getSize().x, 16, (int)m_context->m_window->getSize().x - 16);
+		int y = clamp<int>(rand() % (int)m_context->m_window->getSize().y, 16, (int)m_context->m_window->getSize().y - 16);
+		food.setPosition(x, y);
+		ChangeAppleSpawn(i, food);
+	}
+
 }
 #pragma endregion

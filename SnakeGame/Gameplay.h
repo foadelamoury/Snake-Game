@@ -16,7 +16,11 @@ class Gameplay : public Engine::State
 private:
 	std::shared_ptr<Context> m_context;
 	sf::Sprite m_grass;
+
 	sf::Sprite m_food;
+	sf::Sprite m_golden_food;
+	sf::Sprite m_poisoned_food;
+
 	std::array<sf::Sprite, 4> m_walls;
 
 	std::vector<sf::Sprite> m_v_walls;
@@ -25,6 +29,9 @@ private:
 	Snake m_snake;
 	bool snakeColorChanged = false;
 	sf::Clock snakeColorClock;
+
+	bool snakePoisonedColorChanged = false;
+	sf::Clock snakePoisonedColorClock;
 
 	sf::Text m_scoreText;
 	int m_score;
@@ -64,6 +71,12 @@ public:
 
 #pragma endregion
 
+
+#pragma region Change Apple Spawn
+
+	void ChangeAppleSpawn(int i, sf::Sprite& food);
+
+#pragma endregion
 
 	
 
