@@ -113,7 +113,7 @@ void Gameplay::Init()
 	m_food.setTexture(m_context->m_assetManager->GetTexture(FOOD));
 	m_food.setOrigin(m_food.getLocalBounds().width / 2, m_food.getLocalBounds().height / 2);
 	//m_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
-	m_food.setPosition(m_context->m_window->getSize().x / 12, m_context->m_window->getSize().y / 12);
+	m_food.setPosition(m_context->m_window->getSize().x / 12, m_context->m_window->getSize().y -180);
 
 #pragma endregion
 
@@ -122,7 +122,7 @@ void Gameplay::Init()
 	m_golden_food.setTexture(m_context->m_assetManager->GetTexture(GOLDEN_APPLE));
 	m_golden_food.setOrigin(m_golden_food.getLocalBounds().width / 2, m_golden_food.getLocalBounds().height / 2);
 	//m_golden_food.setPosition(m_context->m_window->getSize().x / 2, m_context->m_window->getSize().y / 4);
-	m_golden_food.setPosition(m_context->m_window->getSize().x / 14, m_context->m_window->getSize().y / 14);
+	m_golden_food.setPosition(m_context->m_window->getSize().x / 12, m_context->m_window->getSize().y -200);
 
 #pragma endregion
 

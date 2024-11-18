@@ -18,7 +18,7 @@ void Snake::Init(const sf::Texture& texture)
     for (auto& piece : m_body)
     {
         piece.setTexture(texture);
-        piece.setPosition({ 16.f, 16.f });
+        piece.setPosition(x, 300.f);
         x += direction;
     }
     
